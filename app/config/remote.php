@@ -37,6 +37,15 @@ return array(
 			'root'      => '/var/www',
 		),
 
+		'staging' => array(
+			'host'      => '',
+			'username'  => '',
+			'password'  => '',
+			'key'       => '',
+			'keyphrase' => '',
+			'root'      => '/var/www',
+		),
+
 	),
 
 	/*

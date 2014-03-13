@@ -15,7 +15,7 @@ return array(
 	|
 	*/
 
-	'default' => 'sync',
+	'default' => $_ENV['QDRIVER'],
 
 	/*
 	|--------------------------------------------------------------------------
@@ -52,9 +52,9 @@ return array(
 		'iron' => array(
 			'driver'  => 'iron',
 			'host'    => 'mq-aws-us-east-1.iron.io',
-			'token'   => 'your-token',
-			'project' => 'your-project-id',
-			'queue'   => 'your-queue-name',
+			'token'   => $_ENV['IRON_TOKEN'],
+			'project' => $_ENV['IRON_PROJECT'],
+			'queue'   => $_ENV['IRON_QNAME'],
 		),
 
 		'redis' => array(
