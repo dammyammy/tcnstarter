@@ -107,6 +107,12 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 
+		// Added By Tech Companion NG
+		'Intervention\Image\ImageServiceProvider',
+		'Bogardo\Mailgun\MailgunServiceProvider',
+		'Clockwork\Support\Laravel\ClockworkServiceProvider',
+		'Way\Generators\GeneratorsServiceProvider',
+
 	),
 
 	/*
@@ -172,6 +178,11 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
+
+		// Added By Tech Companion NG
+		'Carbon'		  => 'Carbon\Carbon',
+		'Image' 		  => 'Intervention\Image\Facades\Image',
+		'Clockwork' 	  => 'Clockwork\Support\Laravel\Facade',
 
 	),
 

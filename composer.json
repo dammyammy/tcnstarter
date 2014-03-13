@@ -23,7 +23,10 @@
 			"app/tests/TestCase.php"
 		],
 		"files": [
-			"app/Tech/helpers.php"
+			"app/Tech/helpers.php",
+			"app/Tech/observers.php",
+			"app/Tech/composers.php"
+
 		],
 		"psr-4": {
 			"Tech\\": "app/Tech"
