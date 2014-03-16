@@ -11,8 +11,8 @@ return array(
 	'DB_PASS' 			=> 'SET DB PASSWORD',
 	'DB_NAME' 			=> 'SET DB NAME',
 	
-	'MAIL_USER' 		=> 'SET MAILGUN USER',
-	'MAIL_PASS' 		=> 'SET PASSWORD',
+	'MAIL_USER' 		=> null,
+	'MAIL_PASS' 		=> null,
 	'PRETEND' 			=> false,
 		
 	'QDRIVER'			=> 'iron',

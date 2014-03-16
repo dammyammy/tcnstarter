@@ -9,7 +9,7 @@ gsed -i "s/'COMPANY NAME'/'$CNAME'/" app/config/settings.php
 
 echo -n "What is the Clients Company's Slogan? "
 read -e SLOGAN
-gsed -i "s/'COMPANY SLOGAN'/'$SLOGAN'/" app/config/settings.php
+gsed -i "s/'COMPANY SLOGAN.'/'$SLOGAN'/" app/config/settings.php
 
 echo -n "What is the Clients Company's Domain name? "
 read -e CLIENTURL
@@ -19,7 +19,7 @@ gsed -i "s/PRODUCTIONURL/$CLIENTURL/" .env.php
 
 
 ## LOCAL ENVIRONMENT SETTINGS
-echo -n "Do You want to Set Local Environment Variables? [yes/no]"
+echo -n "Do You want to Set Local Environment Variables? [yes/no] "
 read -e LOCAL
 if [ $LOCAL = 'yes' ]
 then
@@ -35,7 +35,7 @@ then
 		echo "Creating MySQL database"
 		mysql -uroot -p -e "CREATE DATABASE $LOCALDBNAME"
 
-		echo 'Updating database configuration file'
+		echo ' Updating database configuration file '
 		gsed -i "s/'SET DB NAME'/'$LOCALDBNAME'/" .env.local.php
 		
 		echo -n "Do you need a users table? [yes/no] "
@@ -51,39 +51,10 @@ then
 		fi
 
 	fi
-
-	## LOCAL MAIL SETTINGS
-	echo -n "Do you need to setup a local mail sending settings for this app for testing? [yes/no] "
-	read -e LWANTMAIL
-
-	if [ $LWANTMAIL = 'yes' ]
-	then
-	    echo -n "What is the username of for your mail service? (eg. postmaster@yourdomain.com)"
-		read -e LMAILUSER
-
-		echo 'Updating mail username'
-		gsed -i "s/'MAIL_USER' 		=> null/'MAIL_USER' 	=> '$LMAILUSER'/" .env.local.php
-
-		echo -n "What is the password of for your mail service? (eg. GDYj3j3883) "
-		read -e LMAILPASS
-
-		echo "Updating mail password"
-		gsed -i "s/'MAIL_PASS' 		=> null/'MAIL_PASS' 	=> '$LMAILPASS'/" .env.local.php
-		
-
-		echo -n "Do you want to your local app to send mails or continue pretending? [yes/no] "
-		read -e LPRETEND
-
-		if [ $LPRETEND = 'yes' ]
-		then
-			echo "Setting Mail Pretend to false"
-			gsed -i "s/true/false/" .env.local.php
-		fi
-	fi
 fi
 
 ## PRODUCTION ENVIRONMENT SETTINGS
-echo -n "Do You want to Set PRODUCTION Environment Variables? [yes/no]"
+echo -n "Do You want to Set PRODUCTION Environment Variables? [yes/no] "
 read -e PRODUCTION
 if [ $PRODUCTION = 'yes' ]
 then
@@ -113,27 +84,10 @@ then
 		echo 'Updating database PASSWORD'
 		gsed -i "s/'SET DB PASSWORD'/'$PRODUCTIONDBPASSWORD'/" .env.php
 	fi
-
-	## PRODUCTION MAIL SETTINGS
-	echo -n "Do you need to setup a PRODUCTION mail sending settings for this app for testing? [yes/no] "
-	read -e PWANTMAIL
-
-	if [ $PWANTMAIL = 'yes' ]
-	then
-	    echo -n "What is the username of for your mail service? (eg. postmaster@yourdomain.com)"
-		read -e PMAILUSER
-		echo 'Updating mail username'
-		gsed -i "s/'MAIL_USER' 		=> null/'MAIL_USER' 		=> '$PMAILUSER'/" .env.php
-
-		echo -n "What is the password of for your mail service? (eg. GDYj3j3883) "
-		read -e PMAILPASS
-		echo "Updating mail password"
-		gsed -i "s/'MAIL_PASS' 		=> null/'MAIL_PASS' 		=> '$PMAILPASS'/" .env.php
-	fi
 fi
 
 ## STAGING ENVIRONMENT SETTINGS
-echo -n "Do You want to Set STAGING Environment Variables? [yes/no]"
+echo -n "Do You want to Set STAGING Environment Variables? [yes/no] "
 read -e STAGING
 if [ $STAGING = 'yes' ]
 then
@@ -165,21 +119,34 @@ then
 
 	fi
 
-	## STAGING MAIL SETTINGS
-	echo -n "Do you need to setup a STAGING mail sending settings for this app for testing? [yes/no] "
-	read -e SWANTMAIL
+	echo -n "What is the STAGING Domain name? "
+	read -e STAGINGURL
+	gsed -i "s/PRODUCTIONURL/$STAGINGURL/" .env.php
+fi
 
-	if [ $SWANTMAIL = 'yes' ]
+## MAIL SETTINGS
+echo -n "Do you need to setup a mail sending settings for this app for testing? [yes/no] "
+read -e WANTMAIL
+
+if [ $WANTMAIL = 'yes' ]
+then
+    echo -n "What is the username of for your mail service? (eg. postmaster@yourdomain.com) "
+	read -e PMAILUSER
+	echo 'Updating mail username'
+	gsed -i "s/'MAIL_USER' 		=> null/'MAIL_USER' 		=> '$MAILUSER'/" .env.*
+
+	echo -n "What is the password of for your mail service? (eg. GDYj3j3883) "
+	read -e MAILPASS
+	echo "Updating mail password"
+	gsed -i "s/'MAIL_PASS' 		=> null/'MAIL_PASS' 		=> '$MAILPASS'/" .env.*
+
+	echo -n "Do you want to your local app to send mails or continue pretending? [yes/no] "
+	read -e PRETEND
+
+	if [ $PRETEND = 'yes' ]
 	then
-	    echo -n "What is the username of for your mail service? (eg. postmaster@yourdomain.com)"
-		read -e SMAILUSER
-		echo 'Updating mail username'
-		gsed -i "s/'MAIL_USER' 		=> null/'MAIL_USER' 		=> '$SMAILUSER'/" .env.php
-
-		echo -n "What is the password of for your mail service? (eg. GDYj3j3883) "
-		read -e SMAILPASS
-		echo "Updating mail password"
-		gsed -i "s/'MAIL_PASS' 		=> null/'MAIL_PASS' 		=> '$SMAILPASS'/" .env.php
+		echo "Setting Mail Pretend to false"
+		gsed -i "s/true/false/" .env.local.php
 	fi
 fi
 
@@ -227,7 +194,7 @@ then
 	echo -n "What is the PRODUCTION QUEUE URL (eg. http://yourdomain.com/queue/recieve) ? "
 	read -e PQUEUEURL
 	echo 'Updating IRON PRODUCTION QUEUE NAME'
-	php artisan queue:subscribe $IRON_PQNAME $PQUEUEURL
+	php artisan --env=production queue:subscribe $IRON_PQNAME $PQUEUEURL
 
 	echo -n "What is the QUEUE NAME for your IRON STAGING account? "
 	read -e IRON_SQNAME
@@ -236,5 +203,5 @@ then
 	echo -n "What is the STAGING QUEUE URL (eg. http://yourdomain.frtrbt.com/queue/recieve) ? "
 	read -e SQUEUEURL
 	echo 'Updating IRON STAGING QUEUE NAME'
-	php artisan queue:subscribe $IRON_SQNAME $SQUEUEURL
+	php artisan --env=staging queue:subscribe $IRON_SQNAME $SQUEUEURL
 fi
