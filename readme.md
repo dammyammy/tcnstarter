@@ -29,7 +29,7 @@ git clone git@github.com:dammyammy/tcnstarter.git projectname
 cd projectname
 composer install
 # Quickly Bootstrap the New Project:
-./setup
+./setup.sh
 ```
 
 ## Copyright and license

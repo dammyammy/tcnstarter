@@ -129,7 +129,7 @@ read -e WANTMAIL
 if [ $WANTMAIL = 'yes' ]
 then
     echo -n "What is the username of for your mail service? (eg. postmaster@yourdomain.com) "
-	read -e PMAILUSER
+	read -e MAILUSER
 	echo 'Updating mail username'
 	gsed -i "s/'MAIL_USER' 		=> null/'MAIL_USER' 	=> '$MAILUSER'/" .env.*
 
