@@ -9,14 +9,12 @@ gsed -i "s/'COMPANY NAME'/'$CNAME'/" app/config/settings.php
 
 echo -n "What is the Clients Company's Slogan? "
 read -e SLOGAN
-gsed -i "s/'COMPANY SLOGAN.'/'$SLOGAN'/" app/config/settings.php
+gsed -i "s/COMPANY SLOGAN./$SLOGAN/" app/config/settings.php
 
 echo -n "What is the Clients Company's Domain name? "
 read -e CLIENTURL
 gsed -i "s/COMPANYURL.com.ng/$CLIENTURL/g" app/config/settings.php
-gsed -i "s/COMPANYURL.com.ng/$CLIENTURL/g" *
 gsed -i "s/PRODUCTIONURL/$CLIENTURL/" .env.php
-
 
 ## LOCAL ENVIRONMENT SETTINGS
 echo -n "Do You want to Set Local Environment Variables? [yes/no] "
@@ -100,32 +98,32 @@ then
 	    echo -n "What is the HOSTNAME of the database for this app? "
 		read -e STAGINGDBHOSTNAME
 		echo 'Updating database HOSTNAME'
-		gsed -i "s/'SET DB HOSTNAME'/'$STAGINGDBHOSTNAME'/" .env.php
+		gsed -i "s/'SET DB HOSTNAME'/'$STAGINGDBHOSTNAME'/" .env.staging.php
 
 	    echo -n "What is the name of the database for this app? "
 		read -e STAGINGDBNAME
 		echo 'Updating database NAME'
-		gsed -i "s/'SET DB NAME'/'$STAGINGDBNAME'/" .env.php
+		gsed -i "s/'SET DB NAME'/'$STAGINGDBNAME'/" .env.staging.php
 
 		echo -n "What is the USER of the database for this app? "
 		read -e STAGINGDBUSER
 		echo 'Updating database USERNAME'
-		gsed -i "s/'SET DB USER'/'$STAGINGDBUSER'/" .env.php
+		gsed -i "s/'SET DB USER'/'$STAGINGDBUSER'/" .env.staging.php
 
 		echo -n "What is the PASSWORD of the database for this app? "
 		read -e STAGINGDBPASSWORD
 		echo 'Updating database PASSWORD'
-		gsed -i "s/'SET DB PASSWORD'/'$STAGINGDBPASSWORD'/" .env.php
+		gsed -i "s/'SET DB PASSWORD'/'$STAGINGDBPASSWORD'/" .env.staging.php
 
 	fi
 
 	echo -n "What is the STAGING Domain name? "
 	read -e STAGINGURL
-	gsed -i "s/PRODUCTIONURL/$STAGINGURL/" .env.php
+	gsed -i "s/STAGINGURL/$STAGINGURL/" .env.staging.php
 fi
 
 ## MAIL SETTINGS
-echo -n "Do you need to setup a mail sending settings for this app for testing? [yes/no] "
+echo -n "Do you need to setup mail sending settings? [yes/no] "
 read -e WANTMAIL
 
 if [ $WANTMAIL = 'yes' ]
@@ -133,12 +131,12 @@ then
     echo -n "What is the username of for your mail service? (eg. postmaster@yourdomain.com) "
 	read -e PMAILUSER
 	echo 'Updating mail username'
-	gsed -i "s/'MAIL_USER' 		=> null/'MAIL_USER' 		=> '$MAILUSER'/" .env.*
+	gsed -i "s/'MAIL_USER' 		=> null/'MAIL_USER' 	=> '$MAILUSER'/" .env.*
 
 	echo -n "What is the password of for your mail service? (eg. GDYj3j3883) "
 	read -e MAILPASS
 	echo "Updating mail password"
-	gsed -i "s/'MAIL_PASS' 		=> null/'MAIL_PASS' 		=> '$MAILPASS'/" .env.*
+	gsed -i "s/'MAIL_PASS' 		=> null/'MAIL_PASS' 	=> '$MAILPASS'/" .env.*
 
 	echo -n "Do you want to your local app to send mails or continue pretending? [yes/no] "
 	read -e PRETEND
@@ -185,8 +183,8 @@ then
 	echo -n "What is the TOKEN ID for your IRON account? "
 	read -e IRON_TOKEN
 	echo 'Updating IRON TOKEN ID'
-	gsed -i "s/SET IRON.IO TOKEN ID/$IRON_TOKEN/" .env.staging.php
-	gsed -i "s/SET IRON.IO TOKEN ID/$IRON_TOKEN/" .env.php
+	gsed -i "s/SET IRON.IO TOKEN/$IRON_TOKEN/" .env.staging.php
+	gsed -i "s/SET IRON.IO TOKEN/$IRON_TOKEN/" .env.php
 
 	echo -n "What is the QUEUE NAME for your IRON PRODUCTION account? "
 	read -e IRON_PQNAME
@@ -205,3 +203,5 @@ then
 	echo 'Updating IRON STAGING QUEUE NAME'
 	php artisan --env=staging queue:subscribe $IRON_SQNAME $SQUEUEURL
 fi
+
+echo "Setup Is Complete, Build Something Amazing."
