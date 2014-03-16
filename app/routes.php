@@ -28,3 +28,6 @@ Route::get('/', function()
 {
 	return View::make('hello');
 });
+
+Route::get('/', array('as' => 'home', 'uses' => 'FrontEndController@home'));
+Route::get('about', array('as' => 'about', 'uses' => 'FrontEndController@about'));

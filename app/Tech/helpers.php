@@ -31,6 +31,10 @@ function Client($name){
 	return Config::get('settings.company.' . $name );
 }
 
+function TCN($name){
+	return Config::get('settings.developer.' . $name );
+}
+
 function CSS($filename){
 	return asset('/css/'. $filename);
 }
