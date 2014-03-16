@@ -112,6 +112,7 @@ return array(
 		'Bogardo\Mailgun\MailgunServiceProvider',
 		'Clockwork\Support\Laravel\ClockworkServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
+		'GrahamCampbell\Markdown\MarkdownServiceProvider',
 
 	),
 
@@ -183,6 +184,7 @@ return array(
 		'Carbon'		  => 'Carbon\Carbon',
 		'Image' 		  => 'Intervention\Image\Facades\Image',
 		'Clockwork' 	  => 'Clockwork\Support\Laravel\Facade',
+		'Markdown' 		  => 'GrahamCampbell\Markdown\Facades\Markdown',
 
 	),
 

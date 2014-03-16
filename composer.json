@@ -12,7 +12,8 @@
 		"iron-io/iron_mq": "1.4.*",
 		"guzzle/guzzle": "3.8.*",
 		"mailchimp/mailchimp": "2.0.*",
-		"phpspec/phpspec": "2.0.*@dev"
+		"phpspec/phpspec": "2.0.*@dev",
+		"graham-campbell/markdown": "1.0.*"
 	},
 	"autoload": {
 		"classmap": [

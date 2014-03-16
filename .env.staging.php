@@ -3,6 +3,7 @@
 return array(
 	
 	'APP_ENV' 			=> 'staging',
+	'APPURL' 			=> 'http://STAGINGURL',
 
 	'DB_DEFAULT' 		=> 'pgsql',
 	'DB_HOST' 			=> 'SET DB HOSTNAME',
@@ -12,14 +13,12 @@ return array(
 	
 	'MAIL_USER' 		=> 'SET MAILGUN USER',
 	'MAIL_PASS' 		=> 'SET PASSWORD',
+	'PRETEND' 			=> false,
 		
 	'QDRIVER'			=> 'iron',
 	'IRON_PROJECT' 		=> 'SET IRON.IO PROJECT ID',
 	'IRON_TOKEN' 		=> 'SET IRON.IO TOKEN',
 	'IRON_QNAME' 		=> 'SET IRON.IO QUEUE NAME',
-	
-	'APPURL' 			=> 'http://STAGINGURL',
-	'PRETEND' 			=> false,
 
 	'MAILCHIMP_API_KEY' => 'SET MAILCHIMP API KEY',
 	'MAILCHIMP_LIST_ID' => 'SET MAILCHIMP LIST ID',
