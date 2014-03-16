@@ -1,0 +1,6 @@
+suites:
+    # Suite Definitions
+    tech_suite:
+        src_path: app
+        spec_path: app
+        spec_prefix: spec

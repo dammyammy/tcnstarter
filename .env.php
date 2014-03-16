@@ -4,6 +4,7 @@ return array(
 	
 	'APP_ENV' 			=> 'production',
 	
+	'DB_DEFAULT' 		=> 'mysql',
 	'DB_HOST' 			=> 'SET DB HOSTNAME',
 	'DB_USER' 			=> 'SET DB USER',
 	'DB_PASS' 			=> 'SET DB PASSWORD',

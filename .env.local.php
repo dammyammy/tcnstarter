@@ -3,7 +3,8 @@
 return array(
 	
 	'APP_ENV' 			=> 'local',
-		
+
+	'DB_DEFAULT' 		=> 'mysql',
 	'DB_HOST' 			=> 'localhost',
 	'DB_USER' 			=> 'SET DB USER',
 	'DB_PASS' 			=> 'SET DB PASSWORD',

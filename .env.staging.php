@@ -3,7 +3,8 @@
 return array(
 	
 	'APP_ENV' 			=> 'staging',
-	
+
+	'DB_DEFAULT' 		=> 'pgsql',
 	'DB_HOST' 			=> 'SET DB HOSTNAME',
 	'DB_USER' 			=> 'SET DB USER',
 	'DB_PASS' 			=> 'SET DB PASSWORD',
